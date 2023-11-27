@@ -20,13 +20,10 @@ tile(1..N,1..N) :- size(N).
 :- rook(X, Y), rook(X, Y2), Y != Y2.
 :- rook(X, Y), rook(X2, Y), X != X2.
 
-% does this work?
 :- rook(X, Y), bishop(X1, Y1), X == X1.
 :- rook(X, Y), bishop(X1, Y1), Y == Y1.
 
 % Bishops can move diagonally
 :- bishop(X, Y), bishop(X1, Y1), (X,Y) != (X1,Y1), abs(X - X1) == abs(Y - Y1).
-
 :- bishop(X, Y), rook(X1, Y1), (X,Y) != (X1,Y1), abs(X - X1) == abs(Y - Y1).
 
-% we need to consider when pieces are hidden behind others
