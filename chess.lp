@@ -1,6 +1,5 @@
 #show rook/2.
 #show bishop/2.
-% #show tile/2.
 
 tile(1..N,1..N) :- size(N).
 
@@ -9,7 +8,7 @@ tile(1..N,1..N) :- size(N).
 { bishop(X, Y) } :- tile(X, Y).
 
 % only one per square
-:- rook(X,Y), bishop(X1, Y1), X != X1, Y != Y1.
+:- rook(X,Y), bishop(X1, Y1), X == X1, Y == Y1.
 
 % limit number of rooks
 :- n_rooks(N), N != #count{ X, Y: rook(X, Y) }.
@@ -21,5 +20,14 @@ tile(1..N,1..N) :- size(N).
 :- rook(X, Y), rook(X, Y2), Y != Y2.
 :- rook(X, Y), rook(X2, Y), X != X2.
 
+% does this work?
+:- rook(X, Y), bishop(X1, Y1), X == X1.
+:- rook(X, Y), bishop(X1, Y1), Y == Y1.
+
 % Bishops can move diagonally
+% this does not work
 :- bishop(X, Y), bishop(X2, Y2), abs(X - X2) != abs(Y - Y2).
+
+%:- bishop(X, Y), rook(X2, Y2), abs(X - X2) != abs(Y - Y2).
+
+% we need to consider when pieces are hidden behind others
