@@ -13,7 +13,6 @@
 % #show supplied_with/2.
 % #show produces/2.
 
-
 farm(J) :- f_prod(J, _).
 possible_production(J, 1..Max) :- f_prod(J, Max).
 
