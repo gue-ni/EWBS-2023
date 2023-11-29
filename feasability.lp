@@ -7,11 +7,11 @@
 % #show f_prod/2.
 % #show m_req/3.
 
-#show supply_limit/2.
-#show request/2.
-#show supplied_by/2.
-#show supplied_with/2.
-#show produces/2.
+% #show supply_limit/2.
+% #show request/2.
+% #show supplied_by/2.
+% #show supplied_with/2.
+% #show produces/2.
 
 
 farm(J) :- f_prod(J, _).
@@ -29,8 +29,7 @@ f_open(J) :- transport_prod(J, _, _).
 % total number of units supplied to I
 % it is important to put Q, J here
 supplied_with(I, N) :- market(I), N = #sum{ Q, J: transport_prod(J, I, Q) }.
-:- supplied_with(I, N), request(I, R), N != R.
-%:- request(I, N), supplied_with(I, N'), N != N'.
+:- request(I, N), supplied_with(I, N'), N != N'.
 
 % total number of units produced by J
 produces(J, N) :- farm(J), N = #sum{ Q : transport_prod(J, _, Q) }.
@@ -41,7 +40,7 @@ produces(J, N) :- farm(J), N = #sum{ Q : transport_prod(J, _, Q) }.
 
 % total number of farms supplying I
 supplied_by(I, N) :- N = #count{ I, J: transport_prod(J, I, _) }, market(I).
-:- supply_limit(I, N), supplied_by(I, N'), N > N'.
+:- supply_limit(I, N), supplied_by(I, N'), N < N'.
 
 
 
