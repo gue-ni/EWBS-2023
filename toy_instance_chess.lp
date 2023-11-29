@@ -4,3 +4,6 @@ size(8).
 n_rooks(5).
 % d bishop pieces, where d=6.
 n_bishops(6).
+
+#show rook/2.
+#show bishop/2.

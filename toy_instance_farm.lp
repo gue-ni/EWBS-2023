@@ -37,3 +37,23 @@ transport_cost(1, 1, 4;
                4, 3, 3).
 % The third row says that the connection from farm 1 to market 3 
 % costs 5.
+
+#show f_open/1.
+#show transport_prod/3.
+
+% just for debugging, can be removed
+% #show farm/1.
+% #show market/1.
+% #show f_prod/2.
+% #show m_req/3.
+
+% #show supply_limit/2.
+% #show request/2.
+% #show supplied_by/2.
+% #show supplied_with/2.
+% #show produces/2.
+% #show real_transport_cost/3.
+% #show total_transport_cost/1.
+% #show total_opening_cost/1.
+% #show total_cost/1.
+

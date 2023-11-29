@@ -1,22 +1,3 @@
-#show f_open/1.
-#show transport_prod/3.
-
-% just for debugging, can be removed
-% #show farm/1.
-% #show market/1.
-% #show f_prod/2.
-% #show m_req/3.
-
-% #show supply_limit/2.
-% #show request/2.
-% #show supplied_by/2.
-% #show supplied_with/2.
-% #show produces/2.
-%#show real_transport_cost/3.
-%#show total_transport_cost/1.
-%#show total_opening_cost/1.
-%#show total_cost/1.
-
 farm(J) :- f_prod(J, _).
 possible_production(J, 1..Max) :- f_prod(J, Max).
 

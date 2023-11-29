@@ -1,6 +1,3 @@
-#show rook/2.
-#show bishop/2.
-
 tile(1..N,1..N) :- size(N).
 
 % generate pieces on spares
