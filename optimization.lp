@@ -12,10 +12,10 @@
 % #show supplied_by/2.
 % #show supplied_with/2.
 % #show produces/2.
-#show real_transport_cost/3.
+%#show real_transport_cost/3.
 %#show total_transport_cost/1.
-#show total_opening_cost/1.
-#show total_cost/1.
+%#show total_opening_cost/1.
+%#show total_cost/1.
 
 farm(J) :- f_prod(J, _).
 possible_production(J, 1..Max) :- f_prod(J, Max).
@@ -46,11 +46,13 @@ supplied_by(I, N) :- N = #count{ I, J: transport_prod(J, I, _) }, market(I).
 :- supply_limit(I, N), supplied_by(I, N'), N < N'.
 
 % the transport cost for the paths actually taken
-real_transport_cost(I, J, C) :- transport_cost(I, J, C), transport_prod(J, I, _).
-
+real_transport_cost(I, J, C * Q) :- transport_cost(I, J, C), transport_prod(J, I, Q).
 total_transport_cost(N) :- N = #sum{ C, I, J: real_transport_cost(I, J, C) }.
 
-total_opening_cost(N) :- f_open(J), N = #sum{ C, J : f_open_cost(J, C) }.
+% total cost of opening the farms
+open_farms(J, C) :- f_open(J), f_open_cost(J, C).
+total_opening_cost(N) :- N = #sum{ C, J : open_farms(J, C) }.
 
+total_cost(N+M) :- total_opening_cost(N), total_transport_cost(M).
 
-%total_cost(N) :- total_opening_cost(N), total
+#minimize { N : total_cost(N) }. 
