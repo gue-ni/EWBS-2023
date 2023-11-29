@@ -3,7 +3,7 @@ possible_production(J, 1..Max) :- f_prod(J, Max).
 
 market(I) :- m_req(I, _, _).
 request(I, R) :- m_req(I, R, _).
-supply_limit(I, L) :- m_req(I, _, L).
+supply_max(I, L) :- m_req(I, _, L).
 
 f_open(J) :- transport_prod(J, _, _).
 
@@ -24,7 +24,7 @@ produces(J, N) :- farm(J), N = #sum{ Q : transport_prod(J, _, Q) }.
 
 % total number of farms supplying I
 supplied_by(I, N) :- N = #count{ I, J: transport_prod(J, I, _) }, market(I).
-:- supply_limit(I, N), supplied_by(I, N'), N < N'.
+:- supply_max(I, N), supplied_by(I, N'), N < N'.
 
 
 

@@ -47,7 +47,7 @@ transport_cost(1, 1, 4;
 % #show f_prod/2.
 % #show m_req/3.
 
-% #show supply_limit/2.
+% #show supply_max/2.
 % #show request/2.
 % #show supplied_by/2.
 % #show supplied_with/2.
